@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "chart-components-app": {
+    "charco-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/chart-components-app",
+            "outputPath": "dist/charco-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "chart-components-app:build"
+            "browserTarget": "charco-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "chart-components-app:build:production"
+              "browserTarget": "charco-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "chart-components-app:build"
+            "browserTarget": "charco-app:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "chart-components-app-e2e": {
+    "charco-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "chart-components-app:serve"
+            "devServerTarget": "charco-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "chart-components-app:serve:production"
+              "devServerTarget": "charco-app:serve:production"
             }
           }
         },
@@ -121,7 +121,47 @@
           }
         }
       }
+    },
+    "charco": {
+      "root": "projects/charco",
+      "sourceRoot": "projects/charco/src",
+      "projectType": "library",
+      "prefix": "charco",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/charco/tsconfig.lib.json",
+            "project": "projects/charco/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/charco/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/charco/src/test.ts",
+            "tsConfig": "projects/charco/tsconfig.spec.json",
+            "karmaConfig": "projects/charco/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/charco/tsconfig.lib.json",
+              "projects/charco/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "chart-components-app"
+  "defaultProject": "charco-app"
 }

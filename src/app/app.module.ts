@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { CharcoModule } from 'charco';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CharcoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
